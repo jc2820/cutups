@@ -6,7 +6,7 @@ The server opens a websocket waiting for client connections. It processes creati
 The client is a simple browser page that accepts snippet messages from the server and appends them to the Cutup poem on the page.
 
 ## Run this app
-Clone this repo
-start the websocket server with `node server/server.js` (from project root folder).
-Open the client in browser either by 'open with <browser of choice>' or using something like vscode live server.
-Watch your Cutup get created!
+1. Clone this repo
+2. Start the websocket server with `node server/server.js` (from project root folder).
+3. Open the client in browser either by 'open with <browser of choice>' or using something like vscode live server.
+4. Watch your Cutup get created!
