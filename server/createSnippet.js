@@ -1,9 +1,10 @@
 import * as https from "https";
 
 function createUrl() {
-  let domain = "wikipedia";
-  let tld = "org";
-  let path = "wiki/Special:Random";
+  let domain = "jamiecarter.herokuapp";
+  let tld = "com";
+  let path = "";
+
   return `https://${domain}.${tld}/${path}`;
 }
 
@@ -12,14 +13,17 @@ function getPage() {
   return new Promise((resolve, reject) => {
     https
       .get(url, (res) => {
-        res.setEncoding("utf8");
-        let rawData = "";
-        res.on("data", (chunk) => {
-          rawData += chunk;
-        });
-        res.on("end", () => {
-          resolve(rawData);
-        });
+        const { statusCode } = res;
+        if (statusCode == 200) {
+          res.setEncoding("utf8");
+          let rawData = "";
+          res.on("data", (chunk) => {
+            rawData += chunk;
+          });
+          res.on("end", () => {
+            resolve(rawData);
+          });
+        } else reject("error");
       })
       .on("error", (e) => {
         reject(e);
@@ -28,10 +32,6 @@ function getPage() {
 }
 
 export async function createSnippet() {
-  getPage()
-    .then((data) => {
-      let title = data.split("<title>")[1].split("</title>")[0];
-      return title;
-    })
-    .catch((error) => console.error(error));
+  let pageData = await getPage().catch(() => null)
+  return pageData ? pageData.split("<title>")[1].split("</title>")[0] : null;
 }

@@ -9,8 +9,13 @@ wss.on("connection", function connection(ws, req) {
   let path = req.url;
   if (path == "/cutup") {
     setInterval(() => {
-      createSnippet().then(snippet => console.log(snippet))
-      //ws.send(snippet);
+      createSnippet()
+        .then((snippet) => {
+          if (snippet) {
+            ws.send(snippet);
+          } else return;
+        })
+        .catch((error) => console.error(error));
     }, 1000);
   }
 });
