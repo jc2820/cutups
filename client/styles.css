@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  font-family: "Roboto Slab", serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+header {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 25px;
+}
+
+h1 {
+  color: crimson;
+  font-size: 1rem;
+  margin-right: 25px;
+}
+
+button {
+  background: none;
+  border: none;
+  color: crimson;
+  font-size: 1rem;
+  margin-left: 25px;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.cutup-container {
+  width: 100vw;
+  padding: 0 25px 25px 25px;
+}
+
+.cutup-box {
+  width: 100%;
+  min-height: 25px;
+  padding: 25px 0;
+  margin-bottom: 25px;
+  color: crimson;
+  border-top: 2px dotted crimson;
+  border-bottom: 2px dotted crimson;
+}

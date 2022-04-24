@@ -20,4 +20,8 @@ wss.on("connection", function connection(ws, req) {
   }
 });
 
+wss.on("message", function message(data) {
+  console.log("received: %s", data);
+});
+
 server.listen(5000, () => console.log("Server running on 5000"));
