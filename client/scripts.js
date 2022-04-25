@@ -18,7 +18,7 @@ async function startCutup() {
   ws = await connectToServer();
   cutUp = new CutUp([], "", createTimestamp());
 
-  let newDiv = document.createElement("div")
+  let newDiv = document.createElement("div");
   newDiv.className = "cutup-box";
   let container = document.getElementById("container");
   container.appendChild(newDiv);
@@ -54,10 +54,10 @@ async function startCutup() {
       }, 10);
     });
   }
-};
+}
 
 function stopCutup() {
-  ws.send(JSON.stringify(cutUp))
+  ws.send(JSON.stringify({ cutUp: cutUp, status: "closing" }));
   ws.close();
 }
 

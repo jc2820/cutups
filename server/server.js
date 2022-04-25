@@ -4,11 +4,10 @@ import { createSnippet } from "./createSnippet.js";
 
 const server = createServer();
 const wss = new WebSocketServer({ server });
-
-wss.on("connection", function connection(ws, req) {
+let urlInterval = wss.on("connection", function connection(ws, req) {
   let path = req.url;
   if (path == "/cutup") {
-    setInterval(() => {
+    urlInterval = setInterval(() => {
       createSnippet()
         .then((snippet) => {
           if (snippet) {
@@ -21,7 +20,11 @@ wss.on("connection", function connection(ws, req) {
 
   ws.on("message", function message(data) {
     // this could save to persistent db.
-    console.log("received: %s", JSON.parse(data));
+    const message = JSON.parse(data);
+    if (message.status === "closing") {
+      clearInterval(urlInterval);
+      console.log("Cut-up: %s", message.cutUp);
+    }
   });
 });
 
