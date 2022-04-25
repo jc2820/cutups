@@ -14,18 +14,31 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   padding: 0 25px;
+  background-color: bisque;
+  border-bottom: 2px dotted crimson;
 }
 
 h1 {
   color: crimson;
   font-size: 1rem;
   margin-right: 25px;
+}
+
+h2 {
+  color: crimson;
+  font-size: 1rem;
+  text-decoration: underline;
+  margin: 0 0 10px 0;
 }
 
 button {
@@ -47,6 +60,7 @@ p {
 }
 
 .cutup-container {
+  margin-top: 75px;
   width: 100vw;
   padding: 0 25px 25px 25px;
 }
@@ -54,9 +68,8 @@ p {
 .cutup-box {
   width: 100%;
   min-height: 25px;
-  padding: 25px 0;
+  padding-bottom: 25px;
   margin-bottom: 25px;
   color: crimson;
-  border-top: 2px dotted crimson;
   border-bottom: 2px dotted crimson;
 }

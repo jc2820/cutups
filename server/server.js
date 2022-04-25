@@ -18,10 +18,11 @@ wss.on("connection", function connection(ws, req) {
         .catch((error) => console.error(error));
     }, 1000);
   }
-});
 
-wss.on("message", function message(data) {
-  console.log("received: %s", data);
+  ws.on("message", function message(data) {
+    // this could save to persistent db.
+    console.log("received: %s", JSON.parse(data));
+  });
 });
 
 server.listen(5000, () => console.log("Server running on 5000"));

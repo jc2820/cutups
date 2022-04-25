@@ -4,8 +4,9 @@ function createTimestamp() {
 }
 
 class CutUp {
-  constructor(array, timestamp) {
+  constructor(array, title, timestamp) {
     this.cutUpArray = array;
+    this.title = title;
     this.timestamp = timestamp;
   }
 }
@@ -15,19 +16,31 @@ let cutUp;
 
 async function startCutup() {
   ws = await connectToServer();
-  cutUp = new CutUp([], createTimestamp());
+  cutUp = new CutUp([], "", createTimestamp());
 
   let newDiv = document.createElement("div")
   newDiv.className = "cutup-box";
   let container = document.getElementById("container");
   container.appendChild(newDiv);
+  let titleCreated = false;
 
   ws.onmessage = (msg) => {
-    cutUp.cutUpArray.push(msg.data);
-    let newPara = document.createElement("p");
-    let snippetText = document.createTextNode(msg.data);
-    newPara.appendChild(snippetText);
-    newDiv.appendChild(newPara);
+    if (!titleCreated) {
+      cutUp.title = msg.data;
+      let newCutupTitle = document.createElement("h2");
+      let titleText = document.createTextNode(msg.data);
+      newCutupTitle.appendChild(titleText);
+      newDiv.appendChild(newCutupTitle);
+      window.scrollTo(0, document.body.scrollHeight);
+      titleCreated = true;
+    } else {
+      cutUp.cutUpArray.push(msg.data);
+      let newPara = document.createElement("p");
+      let snippetText = document.createTextNode(msg.data);
+      newPara.appendChild(snippetText);
+      newDiv.appendChild(newPara);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
   };
 
   async function connectToServer() {
@@ -43,8 +56,8 @@ async function startCutup() {
   }
 };
 
-async function stopCutup() {
-  await ws.send(cutUp);
+function stopCutup() {
+  ws.send(JSON.stringify(cutUp))
   ws.close();
 }
 
@@ -53,7 +66,3 @@ startButton.addEventListener("click", startCutup);
 
 const stopButton = document.getElementById("stop");
 stopButton.addEventListener("click", stopCutup);
-
-
-
-
