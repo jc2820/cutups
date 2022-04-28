@@ -18,5 +18,4 @@ The client is a simple browser page that accepts snippet messages from the serve
 
 ## Improvements
 
-* The app creates snippets only from page titles at the moment. It would be nice to filter down to create a snippent from any text element that exist in the document - paragraphs, headings, title, list items etc.
 * Currently the client sends the just made cut-up back to the websocket server when the stop button is clicked and connection severed. These could easily be stored in a persistent database and a second browser page created to display historical cut-ups, with the main cut-up stream page altered to only display the current creation.
