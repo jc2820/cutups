@@ -19,3 +19,5 @@ The client is a simple browser page that accepts snippet messages from the serve
 ## Improvements
 
 * Currently the client sends the just made cut-up back to the websocket server when the stop button is clicked and connection severed. These could easily be stored in a persistent database and a second browser page created to display historical cut-ups, with the main cut-up stream page altered to only display the current creation.
+* The snippet of text from a site will usually be text only, but will sometimes offer up a surprise like a whole page of css. This could be more tightly controlled.
+* It seems like the vast majority of pages are advertisements that the domain is for sale - particularly when pinging very random addresses. In the spirit of randomness perhaps this is ok, but it does make repetitive poetry. Maybe there is a way to tighten this as well.
